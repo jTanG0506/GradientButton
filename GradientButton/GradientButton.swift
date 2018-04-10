@@ -12,6 +12,25 @@ import UIKit
 @IBDesignable
 class GradientButton: UIButton {
   
+  @IBInspectable var cornerRadius: CGFloat = 0.0 {
+    didSet {
+      layer.cornerRadius = cornerRadius
+      layer.masksToBounds = cornerRadius > 0
+    }
+  }
+  
+  @IBInspectable var borderWidth: CGFloat = 0.0 {
+    didSet {
+      layer.borderWidth = borderWidth
+    }
+  }
+  
+  @IBInspectable var borderColor: UIColor = .black {
+    didSet {
+      layer.borderColor = borderColor.cgColor
+    }
+  }
+  
   // Default gradient is horizontal.
   @IBInspectable var startPoint: CGPoint = CGPoint(x: 0.0, y: 0.5)
   @IBInspectable var endPoint: CGPoint = CGPoint(x: 1.0, y: 0.5)
