@@ -19,7 +19,11 @@ class GradientButton: UIButton {
   // Allow selection from predefined directions.
   // See documentation for more details.
   @IBInspectable var usePrefinedDirection: Bool = false
-  @IBInspectable var direction: Int = 0
+  @IBInspectable var direction: Int = 0 {
+    didSet {
+      direction = abs(direction) % 8
+    }
+  }
   
   @IBInspectable var startColour: UIColor?
   @IBInspectable var endColour: UIColor?
@@ -35,14 +39,26 @@ class GradientButton: UIButton {
       if usePrefinedDirection {
         switch direction {
         case 1:
-          gradientLayer.startPoint = CGPoint(x: 0.0, y: 1.0)
-          gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
+          gradientLayer.startPoint = CGPoint(x: 0.5, y: 1.0)
+          gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
         case 2:
-          gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
-          gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+          gradientLayer.startPoint = CGPoint(x: 0.5, y: 1.0)
+          gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
         case 3:
           gradientLayer.startPoint = CGPoint(x: 1.0, y: 1.0)
           gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.0)
+        case 4:
+          gradientLayer.startPoint = CGPoint(x: 1.0, y: 0.5)
+          gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.5)
+        case 5:
+          gradientLayer.startPoint = CGPoint(x: 1.0, y: 0.5)
+          gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+        case 6:
+          gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+          gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+        case 7:
+          gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+          gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
         default:
           gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
           gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
